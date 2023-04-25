@@ -73,6 +73,13 @@ class DBManager:
         cur = self.conn.cursor()
         for vacancy in vacancies:
             cur.execute("""
+                INSERT INTO companies (company_id, company_name)
+                VALUES (%s, %s)
+                ON CONFLICT (company_id) DO NOTHING;
+            """, (
+                vacancy['employer']['id'], vacancy['employer']['name']
+            ))
+            cur.execute("""
                 INSERT INTO vacancies (vacancy_id, company_id, vacancy_name, vacancy_url, salary, city, published_date,  company_name)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                 ON CONFLICT (vacancy_id) DO UPDATE

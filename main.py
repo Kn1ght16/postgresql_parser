@@ -40,7 +40,7 @@ def main():
     vacancies_with_keyword = db.get_vacancies_with_keyword(keyword)
     print(f"Список вакансий, содержащих ключевое слово '{keyword}':")
     for row in vacancies_with_keyword:
-        print(row[0], "-", row[1], "-", row[2], "-", row[3])
+        print(row[0], "-", row[1], "-", row[2])
 
 
 if __name__ == '__main__':
